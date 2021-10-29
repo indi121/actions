@@ -24,13 +24,12 @@ jobs:
           git clone https://github.com/indi121/local_manifests.git --depth 1 -b pie .repo/local_manifests
       - name: Start sync
         run: |
-          python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j4
+          python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j2
           git config --global user.email "indira1aryal@gmail.com"
           git config --global user.name "indi121"
-          cd build/soong && git fetch https://github.com/masemoel/build_soong_legion-r 11 && git cherry-pick b45c5ae22f74f1bdbb9bfbdd06ecf7a25033c78b && git cherry-pick e020f2130224fbdbec1f83e3adfd06a9764cca87 && cd ../.
-      - name: test rum
+      - name: build rum
         run: |
           source build/envsetup.sh
           lunch aosip_vince-userdebug
           export LC_ALL=C
-          mka kronic -j4
+          mka kronic -j2

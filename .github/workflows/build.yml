@@ -17,7 +17,7 @@ jobs:
          
       - name: Initialise ROM repo
         run: |
-          python repo init --depth=1 --no-repo-verify -u git://github.com/AOSiP/platform_manifest.git -b pie -g default,-mips,-darwin,-notdefault
+          python repo init --depth=1 --no-repo-verify -u git://github.com/LineageOS/android.git -b lineage-16.0 -g default,-mips,-darwin,-notdefault
  
       - name: Clone device repo
         run: |
@@ -30,6 +30,6 @@ jobs:
       - name: build rum
         run: |
           source build/envsetup.sh
-          lunch aosip_vince-userdebug
+          lunch lineage_vince-userdebug
           export LC_ALL=C
-          mka kronic -j2
+          mka bacon

@@ -17,11 +17,11 @@ jobs:
          
       - name: Initialise ROM repo
         run: |
-          python repo init --depth=1 --no-repo-verify -u git://github.com/LineageOS/android.git -b lineage-15.1 -g default,-mips,-darwin,-notdefault
+          python repo init --depth=1 --no-repo-verify -u https://github.com/ResurrectionRemix/platform_manifest.git -b Q -g default,-mips,-darwin,-notdefault
  
       - name: Clone device repo
         run: |
-          git clone https://github.com/indi121/local_manifests.git --depth 1 -b test .repo/local_manifests
+          git clone https://github.com/indi121/local_manifests.git --depth 1 -b rr1 .repo/local_manifests
       - name: Start sync
         run: |
           python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
@@ -30,6 +30,6 @@ jobs:
       - name: build rum
         run: |
           source build/envsetup.sh
-          lunch lineage_vince-user
+          lunch rr_vince-user
           export LC_ALL=C
           mka bacon

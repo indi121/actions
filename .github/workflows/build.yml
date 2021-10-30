@@ -17,19 +17,19 @@ jobs:
          
       - name: Initialise ROM repo
         run: |
-          python repo init --depth=1 --no-repo-verify -u git://github.com/LineageOS/android.git -b lineage-16.0 -g default,-mips,-darwin,-notdefault
+          python repo init --depth=1 --no-repo-verify -u https://github.com/ResurrectionRemix/platform_manifest.git -b Q -g default,-mips,-darwin,-notdefault
  
       - name: Clone device repo
         run: |
-          git clone https://github.com/indi121/local_manifests.git --depth 1 -b pie .repo/local_manifests
+          git clone https://github.com/indi121/local_manifests.git --depth 1 -b rr .repo/local_manifests
       - name: Start sync
         run: |
-          python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j2
+          python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
           git config --global user.email "indira1aryal@gmail.com"
           git config --global user.name "indi121"
       - name: build rum
         run: |
           source build/envsetup.sh
-          lunch lineage_vince-userdebug
+          lunch rr_whyred-user
           export LC_ALL=C
           mka bacon

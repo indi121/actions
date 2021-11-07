@@ -21,7 +21,7 @@ jobs:
  
       - name: Clone device repo
         run: |
-          git clone https://github.com/indi121/local_manifests.git --depth 1 -b aicp .repo/local_manifests
+          git clone https://github.com/indi121/local_manifests.git --depth 1 -b aicp-9 .repo/local_manifests
       - name: Start sync
         run: |
           python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 

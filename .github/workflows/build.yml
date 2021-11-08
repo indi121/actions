@@ -17,11 +17,11 @@ jobs:
          
       - name: Initialise ROM repo
         run: |
-          python repo init --depth=1 --no-repo-verify -u https://github.com/AICP/platform_manifest.git -b p9.0 -g default,-mips,-darwin,-notdefault
+          python repo init --depth=1 --no-repo-verify -u git://github.com/AOSiP/platform_manifest.git -b pie -g default,-mips,-darwin,-notdefault
  
       - name: Clone device repo
         run: |
-          git clone https://github.com/indi121/local_manifests.git --depth 1 -b aicp-9 .repo/local_manifests
+          git clone https://github.com/indi121/local_manifests.git --depth 1 -b aosip-9 .repo/local_manifests
       - name: Start sync
         run: |
           python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
@@ -30,6 +30,6 @@ jobs:
       - name: build rum
         run: |
           source build/envsetup.sh
-          lunch aicp_whyred-user
+          lunch aosip_whyred-userdebug
           export LC_ALL=C
-          brunch whyred
+          time mka kronic

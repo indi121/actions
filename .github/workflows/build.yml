@@ -18,11 +18,11 @@ jobs:
          
       - name: Initialise ROM repo
         run: |
-          python repo init --depth=1 --no-repo-verify -u https://github.com/PixelPlusUI-Elle/manifest -b eleven -g default,-mips,-darwin,-notdefault
+          python repo init --depth=1 --no-repo-verify -u https://github.com/Havoc-OS/android_manifest.git -b eleven -g default,-mips,-darwin,-notdefault
  
       - name: Clone device repo
         run: |
-          git clone https://github.com/indi121/local_manifests.git --depth 1 -b ppui .repo/local_manifests
+          git clone https://github.com/indi121/local_manifests.git --depth 1 -b havoc .repo/local_manifests
       - name: Start sync
         run: |
           python repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
@@ -31,6 +31,5 @@ jobs:
       - name: build rum
         run: |
           source build/envsetup.sh
-          lunch aosp_vince-user
           export LC_ALL=C
-          mka bacon
+          brunch vince
